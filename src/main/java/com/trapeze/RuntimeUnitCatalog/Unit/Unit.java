@@ -19,17 +19,24 @@ public class Unit {
     @Column(name = "unitId",unique=true,columnDefinition="VARCHAR(24)")
     String unitId;
 
-
     @ManyToOne( )
     @JoinColumn( name = "systemModelId",  insertable = false, updatable = false)
+    @JsonIgnoreProperties(value={"units","modules", "unitTypes"})
     SystemModel systemModel;
+
+
+    long unitTypeId;
 
     @ManyToOne( )
     @JoinColumn( name = "unitTypeId",  insertable = false, updatable = false)
+    @JsonIgnoreProperties(value={"units","systemModel"})
     UnitType unitType;
+
+    long moduleId;
 
     @ManyToOne()
     @JoinColumn( name = "moduleId", insertable =  false, updatable = false )
+    @JsonIgnoreProperties(value={"units","systemModel", "units"})
     Module module;
 
     @ManyToMany( cascade = CascadeType.MERGE)
@@ -43,8 +50,33 @@ public class Unit {
     @JsonIgnore
     private Set<Unit> dependentUnits;
 
+    String description;
+
     public Unit(String unitId) {
         this.unitId = unitId;
+    }
+
+    public Unit() {
+        this.unitId = "";
+        this.systemModel = null;
+        this.unitTypeId = 0;
+        this.unitType = null;
+        this.moduleId = 0;
+        this.module = null;
+        this.unitDependencies = null;
+        this.dependentUnits = null;
+        this.description = "";
+    }
+
+    public Unit(String unitId, SystemModel systemModel, long unitTypeId, UnitType unitType, long moduleId, Module module, Set<Unit> unitDependencies, Set<Unit> dependentUnits) {
+        this.unitId = unitId;
+        this.systemModel = systemModel;
+        this.unitTypeId = unitTypeId;
+        this.unitType = unitType;
+        this.moduleId = moduleId;
+        this.module = module;
+        this.unitDependencies = unitDependencies;
+        this.dependentUnits = dependentUnits;
     }
 
     public String getUnitId() {
@@ -93,5 +125,29 @@ public class Unit {
 
     public void setModule(Module module) {
         this.module = module;
+    }
+
+    public long getUnitTypeId() {
+        return unitTypeId;
+    }
+
+    public void setUnitTypeId(long unitTypeId) {
+        this.unitTypeId = unitTypeId;
+    }
+
+    public long getModuleId() {
+        return moduleId;
+    }
+
+    public void setModuleId(long moduleId) {
+        this.moduleId = moduleId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
