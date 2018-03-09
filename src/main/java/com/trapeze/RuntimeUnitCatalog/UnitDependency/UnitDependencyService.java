@@ -11,15 +11,11 @@ public class UnitDependencyService {
     @Autowired
     UnitDependencyRepository repository;
 
-    void addUnitDependency(String unitId, String requiredUnitId) {
-        UnitDependency unitDependency = new UnitDependency(unitId, requiredUnitId);
-
+    void addUnitDependency(UnitDependency unitDependency) {
         repository.save(unitDependency);
     }
 
-    public void deleteUnitDependency(String unitId, String requiredUnitId) {
-        UnitDependency.UnitDependencyId id = new UnitDependency.UnitDependencyId(unitId, requiredUnitId);
-
-        repository.delete(id);
+    public void deleteUnitDependency(UnitDependency unitDependency){
+        repository.delete(unitDependency.unitdependencyId);
     }
 }

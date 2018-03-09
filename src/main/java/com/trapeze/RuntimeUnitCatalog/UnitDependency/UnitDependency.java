@@ -47,7 +47,7 @@ public class UnitDependency {
     }
 
     @EmbeddedId
-    UnitDependencyId unitdependencyId;
+    public UnitDependencyId unitdependencyId;
 
     public UnitDependency() {
         this.unitdependencyId = new UnitDependencyId();
@@ -66,11 +66,11 @@ public class UnitDependency {
     }
 
     public String getRequiredUnitId() {
-        return this.unitdependencyId.unitId;
+        return this.unitdependencyId.requiredUnitId;
     }
 
     public void setRequiredUnitId(String requiredUnitId) {
-        this.unitdependencyId.unitId = requiredUnitId;
+        this.unitdependencyId.requiredUnitId= requiredUnitId;
     }
 
 

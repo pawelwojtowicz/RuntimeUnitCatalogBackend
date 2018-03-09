@@ -11,12 +11,13 @@ public class UnitDependencyController {
     @Autowired
     UnitDependencyService unitDependencyService;
 
-    @RequestMapping( method= RequestMethod.POST, value = "/unitdependency/{unitId}/{requiredUnitId}")
-    public void addDependency(@PathVariable String unitId, @PathVariable String requiredUnitId ) {
-        unitDependencyService.addUnitDependency( unitId,requiredUnitId);
+    @RequestMapping( method= RequestMethod.POST, value = "/unitdependency")
+    public void addDependency(@RequestBody UnitDependency dependency ) {
+        unitDependencyService.addUnitDependency( dependency);
     }
 
-    public void deleteDependency(@PathVariable String unitId, @PathVariable String requiredUnitId ) {
-        unitDependencyService.deleteUnitDependency( unitId, requiredUnitId);
+    @RequestMapping( method= RequestMethod.DELETE, value = "/unitdependency")
+    public void deleteDependency(@RequestBody UnitDependency dependency) {
+        unitDependencyService.deleteUnitDependency( dependency);
     }
 }
