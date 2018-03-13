@@ -25,6 +25,9 @@ public class Module {
     @JsonIgnoreProperties(value="module")
     Set<Unit> units;
 
+    @Column( name = "systemModelId", nullable = false)
+    long systemModelId;
+
     @ManyToOne( )
     @JoinColumn( name = "systemModelId",  insertable = false, updatable = false)
     SystemModel systemModel;
@@ -81,5 +84,11 @@ public class Module {
         this.systemModel = systemModel;
     }
 
+    public long getSystemModelId() {
+        return systemModelId;
+    }
 
+    public void setSystemModelId(long systemModelId) {
+        this.systemModelId = systemModelId;
+    }
 }

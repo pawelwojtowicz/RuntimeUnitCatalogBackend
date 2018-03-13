@@ -19,6 +19,9 @@ public class Unit {
     @Column(name = "unitId",unique=true,columnDefinition="VARCHAR(24)")
     String unitId;
 
+    @Column( name = "systemModelId", nullable = false)
+    long systemModelId;
+
     @ManyToOne( )
     @JoinColumn( name = "systemModelId",  insertable = false, updatable = false)
     @JsonIgnoreProperties(value={"units","modules", "unitTypes"})
@@ -149,5 +152,13 @@ public class Unit {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public long getSystemModelId() {
+        return systemModelId;
+    }
+
+    public void setSystemModelId(long systemModelId) {
+        this.systemModelId = systemModelId;
     }
 }

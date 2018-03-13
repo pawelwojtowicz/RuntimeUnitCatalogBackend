@@ -38,4 +38,7 @@ public class ModuleService {
         moduleRepository.delete(moduleId);
     }
 
+    public List<Module> getModulesForSystemModel(long systemModelId) {
+        return moduleRepository.findBySystemModelId(systemModelId);
+    }
 }

@@ -32,6 +32,11 @@ public class ModuleController {
         return moduleService.getModules();
     }
 
+    @RequestMapping( method = RequestMethod.GET, value = "/modules/formodel/{systemModelId}")
+    public List<Module> getModulesForSystemMode(@PathVariable long systemModelId ) {
+        return moduleService.getModulesForSystemModel(systemModelId);
+    }
+
     @RequestMapping( method = RequestMethod.GET , value= "/modules/{moduleId}")
     public Module getModuleById( @PathVariable long moduleId ) {
         Module newOne = moduleService.getModuleById( moduleId );

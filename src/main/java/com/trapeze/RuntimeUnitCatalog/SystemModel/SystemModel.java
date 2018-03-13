@@ -93,4 +93,5 @@ public class SystemModel {
     public void setUnitTypes(Set<UnitType> unitTypes) {
         this.unitTypes = unitTypes;
     }
+
 }

@@ -33,4 +33,8 @@ public class UnitTypeService {
     public void deleteUnitType(long unittypeid) {
         unitTypeRepository.delete(unittypeid);
     }
+
+    public List<UnitType> getUnitTypesForSystemModel(long systemModelId) {
+        return unitTypeRepository.findBySystemModelId(systemModelId);
+    }
 }

@@ -28,6 +28,11 @@ public class UnitController {
         return unitService.getAllUnits();
     }
 
+    @RequestMapping( method = RequestMethod.GET, value = "/unit/formodel/{systemModelId}")
+    public List<Unit> getUnitsForSystemModel(@PathVariable long systemModelId){
+        return unitService.getUnitsForSystemModel(systemModelId);
+    }
+
     @RequestMapping( method = RequestMethod.GET, value = "/unit/{unitId}")
     public Unit getUnitById(@PathVariable String unitId) {
         return unitService.getUnitById(unitId);

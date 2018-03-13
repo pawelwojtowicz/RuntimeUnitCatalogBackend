@@ -33,4 +33,8 @@ public class UnitService {
     public void deleteUnit(String unitId) {
         unitRepository.delete(unitId);
     }
+
+    public List<Unit> getUnitsForSystemModel(long systemModelId) {
+        return unitRepository.findBySystemModelId(systemModelId);
+    }
 }

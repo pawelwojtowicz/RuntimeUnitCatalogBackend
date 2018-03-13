@@ -25,6 +25,9 @@ public class UnitType {
     @JsonIgnoreProperties(value="unitType")
     Set<Unit> units;
 
+    @Column( name = "systemModelId", nullable = false)
+    long systemModelId;
+
     @ManyToOne( )
     @JoinColumn( name = "systemModelId",  insertable = false, updatable = false)
     SystemModel systemModel;
@@ -80,5 +83,13 @@ public class UnitType {
 
     public void setSystemModel(SystemModel systemModel) {
         this.systemModel = systemModel;
+    }
+
+    public long getSystemModelId() {
+        return systemModelId;
+    }
+
+    public void setSystemModelId(long systemModelId) {
+        this.systemModelId = systemModelId;
     }
 }

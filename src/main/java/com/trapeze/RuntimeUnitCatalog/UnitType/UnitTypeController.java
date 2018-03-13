@@ -31,6 +31,11 @@ public class UnitTypeController {
         return unitTypeService.getUnitTypes();
     }
 
+    @RequestMapping( method = RequestMethod.GET, value = "/unittype/formodel/{systemModelId}")
+    public List<UnitType> getUnitTypesForModel(@PathVariable long systemModelId) {
+        return unitTypeService.getUnitTypesForSystemModel(systemModelId);
+    }
+
     @RequestMapping( method = RequestMethod.GET , value= "/unittype/{unittypeid}")
     public UnitType getSystemModelById( @PathVariable long unittypeid ) {
         UnitType newOne = unitTypeService.getUnitTypeById( unittypeid);
