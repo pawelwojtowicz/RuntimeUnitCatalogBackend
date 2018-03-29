@@ -34,12 +34,12 @@ public class UnitController {
     }
 
     @RequestMapping( method = RequestMethod.GET, value = "/unit/{unitId}")
-    public Unit getUnitById(@PathVariable String unitId) {
+    public Unit getUnitById(@PathVariable long unitId) {
         return unitService.getUnitById(unitId);
     }
 
     @RequestMapping( method = RequestMethod.DELETE, value = "/unit/{unitId}")
-    public void deleteUnit( @PathVariable String unitId ) {
+    public void deleteUnit( @PathVariable long unitId ) {
         unitService.deleteUnit(unitId);
     }
 }

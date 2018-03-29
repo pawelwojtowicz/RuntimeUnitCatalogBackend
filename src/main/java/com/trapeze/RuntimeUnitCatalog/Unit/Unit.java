@@ -16,8 +16,11 @@ import java.util.Set;
 public class Unit {
 
     @Id
-    @Column(name = "unitId",unique=true,columnDefinition="VARCHAR(24)")
-    String unitId;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    long unitId;
+
+    @Column(name = "unitStringId",columnDefinition="VARCHAR(24)")
+    String unitStringId;
 
     @Column( name = "systemModelId", nullable = false)
     long systemModelId;
@@ -55,12 +58,12 @@ public class Unit {
 
     String description;
 
-    public Unit(String unitId) {
+    public Unit(long unitId) {
         this.unitId = unitId;
     }
 
     public Unit() {
-        this.unitId = "";
+        this.unitId = 0;
         this.systemModel = null;
         this.unitTypeId = 0;
         this.unitType = null;
@@ -71,7 +74,7 @@ public class Unit {
         this.description = "";
     }
 
-    public Unit(String unitId, SystemModel systemModel, long unitTypeId, UnitType unitType, long moduleId, Module module, Set<Unit> unitDependencies, Set<Unit> dependentUnits) {
+    public Unit(long unitId, SystemModel systemModel, long unitTypeId, UnitType unitType, long moduleId, Module module, Set<Unit> unitDependencies, Set<Unit> dependentUnits) {
         this.unitId = unitId;
         this.systemModel = systemModel;
         this.unitTypeId = unitTypeId;
@@ -82,11 +85,11 @@ public class Unit {
         this.dependentUnits = dependentUnits;
     }
 
-    public String getUnitId() {
+    public long getUnitId() {
         return unitId;
     }
 
-    public void setUnitId(String unitId) {
+    public void setUnitId(long unitId) {
         this.unitId = unitId;
     }
 
@@ -160,5 +163,13 @@ public class Unit {
 
     public void setSystemModelId(long systemModelId) {
         this.systemModelId = systemModelId;
+    }
+
+    public String getUnitStringId() {
+        return unitStringId;
+    }
+
+    public void setUnitStringId(String unitStringId) {
+        this.unitStringId = unitStringId;
     }
 }

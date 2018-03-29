@@ -26,11 +26,11 @@ public class UnitService {
         return unitRepository.findAll();
     }
 
-    public Unit getUnitById(String unitId) {
+    public Unit getUnitById(long unitId) {
         return unitRepository.findByUnitId(unitId);
     }
 
-    public void deleteUnit(String unitId) {
+    public void deleteUnit(long unitId) {
         unitRepository.delete(unitId);
     }
 
