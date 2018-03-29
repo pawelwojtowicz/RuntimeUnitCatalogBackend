@@ -1,5 +1,6 @@
 package com.trapeze.RuntimeUnitCatalog.Unit;
 
+import com.trapeze.RuntimeUnitCatalog.Protocol.ReturnValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,8 +15,8 @@ public class UnitController {
     UnitService unitService;
 
     @RequestMapping( method= RequestMethod.POST, value = "/unit")
-    public void addUnit(@RequestBody Unit unit) {
-        unitService.addUnit(unit);
+    public ReturnValue addUnit(@RequestBody Unit unit) {
+        return unitService.addUnit(unit);
     }
 
     @RequestMapping( method = RequestMethod.PUT, value = "/unit")

@@ -1,5 +1,6 @@
 package com.trapeze.RuntimeUnitCatalog.Unit;
 
+import com.trapeze.RuntimeUnitCatalog.Protocol.ReturnValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +14,22 @@ public class UnitService {
     @Autowired
     UnitRepository unitRepository;
 
-    public void addUnit(Unit unit) {
+    public ReturnValue addUnit(Unit unit) {
+
+        ReturnValue retVal = new ReturnValue( 0, "OK");
+
+        List<Unit> existingUnits = unitRepository.findBySystemModelIdAndUnitStringId( unit.getSystemModelId(), unit.getUnitStringId() );
+
+        if ( !existingUnits.isEmpty() ) {
+            if ( existingUnits.get(0).getUnitId() != unit.getUnitId() ) {
+                retVal.setStatus(100);
+                retVal.setMessage("The unit with given name already exists");
+                return retVal;
+            }
+        }
+
         unitRepository.save(unit);
+        return retVal;
     }
 
     public void updateUnit(Unit unit) {
